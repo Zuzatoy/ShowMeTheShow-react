@@ -18337,7 +18337,7 @@ var Intro = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Intro.__proto__ || Object.getPrototypeOf(Intro)).call(this, props));
 
-        _this.state = {
+        _this.state = { // начали с конструктора и примерно прикинули что зайдет в стейт
             text: _this.props.lisa,
             inputValue: ''
         };
@@ -18345,6 +18345,8 @@ var Intro = function (_Component) {
         _this.updateInputValue = _this.updateInputValue.bind(_this);
         return _this;
     }
+    //методы я ипользую когда понимаю что в разметке мне нужны какие то взаимодействия
+
 
     _createClass(Intro, [{
         key: 'updateText',
@@ -18365,6 +18367,7 @@ var Intro = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
+            // иду в рендер и делаю разметку что бы я там хотела видеть
             return _react2.default.createElement(
                 'div',
                 null,
