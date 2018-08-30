@@ -25,9 +25,25 @@ class Intro extends Component {
         })
     }
     
+    toggleEvent () {
+        const backgroundColor = !this.state.backgroundColor
+    this.setState({backgroundColor})
+    }
+
+
     render() { // иду в рендер и делаю разметку что бы я там хотела видеть
         return (
-            <div>
+            this.state.backgroundColor
+
+           ? <div style={{
+            width: '200px',
+            height: '200px',
+            border: 'solid',
+            backgroundColor: 'yellow'
+          }}
+          onClick={() => this.toggleColor()}
+        />
+          : <div>
                 <h3>{this.props.lisa}</h3>
                 <h1>{this.state.text}</h1>
                 <input type="text" value={this.state.inputValue} onChange={this.updateInputValue} />

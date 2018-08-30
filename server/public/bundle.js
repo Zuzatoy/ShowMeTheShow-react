@@ -18281,13 +18281,21 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Intro = __webpack_require__(28);
+var _Main = __webpack_require__(29);
 
-var _Intro2 = _interopRequireDefault(_Intro);
+var _Main2 = _interopRequireDefault(_Main);
+
+var _SignIn = __webpack_require__(30);
+
+var _SignIn2 = _interopRequireDefault(_SignIn);
+
+var _SignUp = __webpack_require__(31);
+
+var _SignUp2 = _interopRequireDefault(_SignUp);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var initialText = 'Lisa';
+var initialText = 'Please make a new account or go to existing one';
 
 var App = function App() {
   return _react2.default.createElement(
@@ -18296,16 +18304,17 @@ var App = function App() {
     _react2.default.createElement(
       'h1',
       null,
-      'React development has begun!'
+      'Hello dear customer, please follow the instruction!'
     ),
-    _react2.default.createElement(_Intro2.default, { lisa: initialText })
+    _react2.default.createElement(_Main2.default, null)
   );
 };
 
 exports.default = App;
 
 /***/ }),
-/* 28 */
+/* 28 */,
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18321,6 +18330,22 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _SignIn = __webpack_require__(30);
+
+var _SignIn2 = _interopRequireDefault(_SignIn);
+
+var _SignUp = __webpack_require__(31);
+
+var _SignUp2 = _interopRequireDefault(_SignUp);
+
+var _MainButton = __webpack_require__(32);
+
+var _MainButton2 = _interopRequireDefault(_MainButton);
+
+var _MainPage = __webpack_require__(33);
+
+var _MainPage2 = _interopRequireDefault(_MainPage);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18329,72 +18354,244 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Intro = function (_Component) {
-    _inherits(Intro, _Component);
+var Main = function (_Component) {
+    _inherits(Main, _Component);
 
-    function Intro(props) {
-        _classCallCheck(this, Intro);
+    function Main(props) {
+        _classCallCheck(this, Main);
 
-        var _this = _possibleConstructorReturn(this, (Intro.__proto__ || Object.getPrototypeOf(Intro)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
 
-        _this.state = { // начали с конструктора и примерно прикинули что зайдет в стейт
-            text: _this.props.lisa,
-            inputValue: ''
+        _this.state = {
+            location: ''
+            /* successfullRegistration: {
+                 name: ''
+             } */
         };
-        _this.updateText = _this.updateText.bind(_this);
-        _this.updateInputValue = _this.updateInputValue.bind(_this);
+
+        _this.goTo = _this.goTo.bind(_this); // bind Main class 'this' to the method
         return _this;
     }
-    //методы я ипользую когда понимаю что в разметке мне нужны какие то взаимодействия
 
-
-    _createClass(Intro, [{
-        key: 'updateText',
-        value: function updateText() {
-            this.setState({
-                text: this.state.inputValue
-            });
+    _createClass(Main, [{
+        key: 'goTo',
+        value: function goTo(location) {
+            this.setState({ location: location });
         }
     }, {
-        key: 'updateInputValue',
-        value: function updateInputValue(event) {
-            var value = event.target.value;
-
-            this.setState({
-                inputValue: value
-            });
+        key: 'display',
+        value: function display(location) {
+            switch (location) {
+                case '':
+                default:
+                    return _react2.default.createElement(_MainButton2.default, { goTo: this.goTo });
+                case 'signUp':
+                    return _react2.default.createElement(_SignUp2.default, null);
+                case 'signIn':
+                    return _react2.default.createElement(_SignIn2.default, { goTo: this.goTo });
+                case 'mainPage':
+                    return _react2.default.createElement(_MainPage2.default, null);
+            }
         }
     }, {
         key: 'render',
         value: function render() {
-            // иду в рендер и делаю разметку что бы я там хотела видеть
+            // const shouldDisplayButtons = this.state.location === '';
+
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(
-                    'h3',
-                    null,
-                    this.props.lisa
-                ),
-                _react2.default.createElement(
-                    'h1',
-                    null,
-                    this.state.text
-                ),
-                _react2.default.createElement('input', { type: 'text', value: this.state.inputValue, onChange: this.updateInputValue }),
-                _react2.default.createElement(
-                    'button',
-                    { type: 'button', onClick: this.updateText },
-                    'Run'
-                )
+                this.display(this.state.location)
             );
         }
     }]);
 
-    return Intro;
+    return Main;
 }(_react.Component);
 
-exports.default = Intro;
+exports.default = Main;
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SignIn = function SignIn(props) {
+    return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+            "form",
+            null,
+            _react2.default.createElement(
+                "label",
+                null,
+                "Name",
+                _react2.default.createElement("input", { type: "text", name: "name" })
+            ),
+            _react2.default.createElement(
+                "label",
+                null,
+                "Email",
+                _react2.default.createElement("input", { type: "text", name: "name" })
+            ),
+            _react2.default.createElement(
+                "label",
+                null,
+                "Password",
+                _react2.default.createElement("input", { type: "text", name: "name" })
+            ),
+            _react2.default.createElement(
+                "button",
+                {
+                    type: "button",
+                    onClick: function onClick() {
+                        return props.goTo('mainPage');
+                    } // onClick call an anonymus function which calls goTo function with binded argument
+                },
+                "Sign In"
+            )
+        )
+    );
+};
+
+exports.default = SignIn;
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SignUp = function SignUp() {
+    return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+            "form",
+            null,
+            _react2.default.createElement(
+                "label",
+                null,
+                "Nick name or email:",
+                _react2.default.createElement("input", { type: "text", name: "name" })
+            ),
+            _react2.default.createElement(
+                "label",
+                null,
+                "Password:",
+                _react2.default.createElement("input", { type: "text", name: "name" })
+            ),
+            _react2.default.createElement(
+                "button",
+                null,
+                ">Sign In"
+            )
+        )
+    );
+};
+
+exports.default = SignUp;
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var MainButton = function MainButton(props) {
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+            'button',
+            {
+                type: 'button',
+                onClick: function onClick() {
+                    return props.goTo('signIn');
+                } // onClick call an anonymus function which calls goTo function with binded argument
+            },
+            'Sign In'
+        ),
+        _react2.default.createElement(
+            'button',
+            {
+                type: 'button',
+                onClick: function onClick() {
+                    return props.goTo('signUp');
+                }
+            },
+            'Sign Up'
+        )
+    );
+};
+
+exports.default = MainButton;
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var MainPage = function MainPage() {
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+            'h1',
+            null,
+            'ORIGATO!'
+        )
+    );
+};
+
+exports.default = MainPage;
 
 /***/ })
 /******/ ]);

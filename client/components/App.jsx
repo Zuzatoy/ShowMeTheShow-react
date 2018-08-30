@@ -1,14 +1,16 @@
 import React from 'react';
 
-import Intro from './Intro';
+import Main from './Main'
+import SignIn from './SignIn';
+import SignUp from './SignUp';
 
-const initialText = 'Lisa';
+const initialText = 'Please make a new account or go to existing one';
 
 const App = () => {
   return (
     <div>
-      <h1>React development has begun!</h1>
-      <Intro lisa={initialText}/>
+      <h1>Hello dear customer, please follow the instruction!</h1>
+      <Main/>
     </div>
   );
 }
