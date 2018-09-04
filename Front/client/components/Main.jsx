@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import MainButton from './MainButton';
-import MainPage from './MainPage';
+import MainInt from './MainInt';
 
 
 class Main extends Component {
@@ -32,8 +32,8 @@ class Main extends Component {
                 return <SignUp />;
             case 'signIn':
                 return <SignIn goTo={this.goTo} />;
-            case 'mainPage':
-                return <MainPage />;
+            case 'main':
+                return <MainInt goTo={this.goTo}/>;
         }
     }
 
@@ -43,7 +43,6 @@ class Main extends Component {
         return (
             <div>
                 {this.display(this.state.location)}
-                {/* {shouldDisplayButtons && <MainButton onButtonClick={this.goTo} />} */}
             </div>
         );           
     }

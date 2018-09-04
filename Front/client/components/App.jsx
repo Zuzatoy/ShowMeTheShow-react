@@ -1,17 +1,22 @@
 import React from 'react';
+import {HashRouter as Router, Route} from 'react-router-dom'
 
+import MainInt from './MainInt'
 import Main from './Main'
-import SignIn from './SignIn';
-import SignUp from './SignUp';
 
-const initialText = 'Please make a new account or go to existing one';
 
-const App = () => {
+
+
+const App = props => {
   return (
-    <div>
+  <div> 
+   <div>
       <h1>Hello dear customer, please follow the instruction!</h1>
-      <Main/>
+      <Main/></div>
+        <div><Router><Route path="/mainint" component={MainInt} />
+                </Router>
     </div>
+  </div>  
   );
 }
 

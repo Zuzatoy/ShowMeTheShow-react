@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-const rootUrl = 'http://localhost:3000/api'
+const rootUrl = 'http://localhost:4000/api'
 
 export function getAllUsers () {
   return request.get(rootUrl + '/getAllUsers')
