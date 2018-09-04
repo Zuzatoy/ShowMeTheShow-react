@@ -5,7 +5,7 @@ const db = require('../db')
 const router = express.Router()
 router.use(express.json())
 
-router.get('/signUp', (req, res) => {
+router.get('/getAllUsers', (req, res) => {
   db.getUsers()
     .then(users => {
       res.json({users: users})
@@ -15,7 +15,7 @@ router.get('/signUp', (req, res) => {
     })
 })
 
-router.get('/main/:id', (req, res) => {
+router.get('/getUser/:id', (req, res) => {
   const id = Number(req.params.id)
   db.getUser(id)
     .then(user => {
@@ -25,11 +25,23 @@ router.get('/main/:id', (req, res) => {
       res.status(500).send('DATABASE ERROR: ' + err.message)
     })
 })
-router.post('/main', (req, res) => {
-  const user = req.body
-  db.addUser(user)
-    .then(() => {
-      res.status(201).end()
+
+router.post('/addUser', (req, res) => {
+  const newUser = req.body
+  db.addUser(newUser)
+    .then(user => {
+      res.status(200).send('Added ' + newUser.name)
+    })
+    .catch(err => {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
+})
+
+router.post('/register', (req, res) => {
+  const newUser = req.body
+  db.addUser(newUser)
+    .then(user => {
+      res.redirect('http://localhost:4000')
     })
     .catch(err => {
       res.status(500).send('DATABASE ERROR: ' + err.message)
