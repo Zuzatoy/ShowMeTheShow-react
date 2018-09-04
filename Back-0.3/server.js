@@ -14,5 +14,5 @@ server.use(function (req, res, next) {
 })
 
 // Routes
-server.use('/api', apiRoutes)
+server.use('/api/v1/users', apiRoutes)
 module.exports = server
