@@ -29,3 +29,7 @@ function deleteUser (id, db = connection) {
 function updateUser (user, db = connection) {
   return db('users').where('id', user.id).update(user)
 }
+
+function getAllMusicList (db = connecting) {
+  return db('musiclist').select()
+}

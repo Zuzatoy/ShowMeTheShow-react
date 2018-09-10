@@ -27,9 +27,9 @@ router.get('/getUser/:id', (req, res) => {
 })
 
 router.post('/addUser', (req, res) => {
-  const newUser = req.body
-  db.addUser(newUser)
-    .then(user => {
+  const user = req.body
+  db.addUser(user)
+    .then(() => {
       res.status(200).send('Added ' + newUser.name)
     })
     .catch(err => {
@@ -48,5 +48,12 @@ router.post('/register', (req, res) => {
     })
 })
 
+// router.get('/getAllMusicList', (req, res) => {
+//   db.
+// })
+
+//  router.post('/submitemusic', (req, res) => {
+//    const newMusicList = req.body
+//  })
 
 module.exports = router
