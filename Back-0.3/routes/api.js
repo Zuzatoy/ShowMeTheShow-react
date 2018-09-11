@@ -1,4 +1,5 @@
 const express = require('express')
+const Feed = require('rss-to-json');
 
 const db = require('../db')
 
@@ -46,6 +47,12 @@ router.post('/register', (req, res) => {
     .catch(err => {
       res.status(500).send('DATABASE ERROR: ' + err.message)
     })
+})
+
+router.get('/rss', (req, res) => {
+  Feed.load('https://meduza.io/rss/all', (err, rss) => {
+    res.json(rss)
+  });
 })
 
 // router.get('/getAllMusicList', (req, res) => {
